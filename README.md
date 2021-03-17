@@ -1,6 +1,8 @@
 ## 项目说明
 
-各知识点使用demo，通过该demo可总结其使用手册。由于有多个module，先在这里留下公用部分配置、代码、样式等。等这部分代码数量增长到一定程度，就建个专用的common module。
+fork自[Multiple](https://github.com/OnLySe/Multiple)，主要用于处理Android本身相关的各种使用用例，如keyevent，view，动画等，其他的就留给Multiple自己解决。
+
+各Android知识点使用demo，通过该demo可总结其使用手册。由于有多个module，先在这里留下公用部分配置、代码、样式等。等这部分代码数量增长到一定程度，就建个专用的common module。
 
 所有项目全程使用Kotlin开发，需配置Kotlin环境
 
