@@ -19,11 +19,12 @@ buildscript {
         
     }
     dependencies {
-        classpath Depend.android_gradle_plugin
+        classpath "com.android.tools.build:gradle:4.1.3"
         classpath Kotlin.plugin
         classpath Kotlin.plugin_android_extension
         classpath Navigation.safe_args_plugin
         classpath Hilt.classPath
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle.kts files
     }
