@@ -1,4 +1,4 @@
-package com.zzq.view.widget
+package com.zzq.view.customview.widget
 
 import android.content.Context
 import android.graphics.Canvas

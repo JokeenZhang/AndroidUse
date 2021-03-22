@@ -7,4 +7,6 @@
     <color name="white">#FFFFFF</color>
     <color name="white2">#f5f3f3</color>
     <color name="colorRed">#d50f09</color>
+
+    <color name="toolbar_bg">@color/purple_500</color>
 </resources>

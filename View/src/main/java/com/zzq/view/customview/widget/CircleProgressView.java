@@ -1,4 +1,4 @@
-package com.zzq.view;
+package com.zzq.view.customview.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -16,10 +16,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.zzq.common.utils.DensityUtil;
+import com.zzq.view.R;
+import com.zzq.view.ViewApp;
 
 public class CircleProgressView extends View {
 
     private final String TAG = "CircleProgressBar";
+    private final String TAG_STATIC = "CircleProgressBar_S";
     /***整数级变化 */
     private int progress = 0;
     private ValueAnimator progressAnimator;
@@ -180,17 +183,18 @@ public class CircleProgressView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //widthMeasureSpec和heightMeasureSpec是包含padding大小的
-        setMeasuredDimension(
-                Math.max(getSuggestedMinimumWidth(),
-                        resolveSize(size, widthMeasureSpec)),
-                Math.max(getSuggestedMinimumHeight(),
-                        resolveSize(size, heightMeasureSpec))
-        );
+        int width = Math.max(getSuggestedMinimumWidth(),
+                resolveSize(size, widthMeasureSpec));
+        int height = Math.max(getSuggestedMinimumHeight(),
+                resolveSize(size, heightMeasureSpec));
+        Log.i(TAG_STATIC, "onMeasure width = " + width + " , height = " + height + " , size = " + size);
+        setMeasuredDimension(size, size);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        Log.i(TAG_STATIC, "onSizeChanged w = " + w + " , h = " + h+ " , oldw = " + oldw+ " , oldh = " + oldh);
         //取小的那个
         size = Math.min(w, h);
         rectF = new RectF(0, 0, size, size);
