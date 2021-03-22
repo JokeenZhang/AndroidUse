@@ -6,24 +6,21 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.zzq.jni.password.CipherParamsKeeper;
+
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
 
-    static {
-        System.loadLibrary("jni-test");
-    }
-
     private TextView tvMsg;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         tvMsg = findViewById(R.id.tv_msg);
-        tvMsg.setText(get());
-        set("hello world from JniTestApp");
+        tvMsg.setText(Arrays.toString(CipherParamsKeeper.getIv()));
     }
 
-    public native String get();
-
-    public native void set(String str);
 }

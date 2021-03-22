@@ -4,9 +4,12 @@ import com.zzq.jni.utils.CipherUtil;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * AndroidUse\jni\build\intermediates\javac\debug\classes> javah -classpath . -jni com.zzq.jni.password.CipherParamsKeeper
+ */
 public class CipherParamsKeeper {
     static {
-        System.loadLibrary("pwdKeeper");
+        System.loadLibrary("pwdkeeper");
     }
 
     public static native byte[] getIv();
