@@ -16,15 +16,24 @@ project("AndroidUse")
 
 # 创建并命名一个库，将其设置为STATIC或SHARED，并提供其源代码的相对路径。您可以定义多个库，而CMake会为您构建它们。
 # Gradle会自动将共享库与您的APK打包在一起。
-# 编译出一个动态库 pwdkeeper，源文件只有 src/main/cpp/cipher_params_keeper.cpp
+# 编译出一个动态库 helloJni，源文件只有 src/main/cpp/HelloJni.cpp
 add_library( # Sets the name of the library.
-             pwdkeeper
+        helloJni
 
-             # Sets the library as a shared library.
-             SHARED
+        # Sets the library as a shared library.
+        SHARED
 
-             # Provides a relative path to your source file(s).
-        cipher_params_keeper.cpp)
+        # Provides a relative path to your source file(s).
+        HelloJni.cpp)
+
+add_library( # Sets the name of the library.
+        JniAndHeaderFile
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        JniAndHeaderFile.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -34,19 +43,26 @@ add_library( # Sets the name of the library.
 
 # 找到预编译库 log_lib 并link到我们的动态库 native-lib中
 find_library( # Sets the name of the path variable.
-              log-lib
+        log-lib
 
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        log)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       pwdkeeper
+        helloJni
 
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})
+
+target_link_libraries( # Specifies the target library.
+        JniAndHeaderFile
+
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})

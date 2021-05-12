@@ -25,12 +25,48 @@ android {
         }
     }
 
-    buildTypes {
+    ndkVersion "21.1.6352462"
+
+    signingConfigs {
+        debug {
+            //这样写就得把debug.jks文件放在项目目录
+            getSigningProperties(false)
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //这样写就得把release.jks文件放在项目目录
+            getSigningProperties(true)
         }
     }
+
+    buildTypes {
+        release {
+            //混淆
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            debuggable false
+            //开发阶段设为true
+            buildConfigField "boolean", "isDebug", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            buildConfigField "boolean", "isDebug", "true"
+            signingConfig signingConfigs.debug
+
+            versionNameSuffix "-debug"
+            zipAlignEnabled false
+            shrinkResources false
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -53,4 +89,49 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation project(path: ':common')
+}
+
+//读取签名配置文件
+def getSigningProperties(boolean isRelease) {
+
+    if (isRelease) {
+        def propFile = file('../keystore/release.properties')
+        if (propFile.canRead()) {
+            Properties props = new Properties()
+            props.load(new FileInputStream(propFile))
+            if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+                    props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+                android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+                android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
+                android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+                android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+            } else {
+                println 'signing.properties found but some entries are missing'
+                android.buildTypes.release.signingConfig = null
+            }
+        } else {
+            println 'signing.properties not found'
+            android.buildTypes.release.signingConfig = null
+        }
+    } else {
+        def propFile = file('../keystore/debug.properties')
+        if (propFile.canRead()) {
+            Properties props = new Properties()
+            props.load(new FileInputStream(propFile))
+            if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+                    props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+                android.signingConfigs.debug.storeFile = file(props['STORE_FILE'])
+                android.signingConfigs.debug.storePassword = props['STORE_PASSWORD']
+                android.signingConfigs.debug.keyAlias = props['KEY_ALIAS']
+                android.signingConfigs.debug.keyPassword = props['KEY_PASSWORD']
+            } else {
+                println 'signing.properties found but some entries are missing'
+                android.buildTypes.debug.signingConfig = null
+            }
+        } else {
+            println 'signing.properties not found'
+            android.buildTypes.debug.signingConfig = null
+        }
+    }
+
 }

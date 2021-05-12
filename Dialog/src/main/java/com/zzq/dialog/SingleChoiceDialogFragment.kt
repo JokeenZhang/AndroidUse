@@ -48,7 +48,7 @@ class SingleChoiceDialogFragment : DialogFragment(),View.OnClickListener {
                 val dm = DisplayMetrics()
                 //设置背景透明
                 window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                activity!!.windowManager.defaultDisplay.getMetrics(dm)
+                requireActivity().windowManager.defaultDisplay.getMetrics(dm)
                 window.setLayout((dm.widthPixels * 0.8).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
             }
         }
