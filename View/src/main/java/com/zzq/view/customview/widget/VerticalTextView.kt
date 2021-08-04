@@ -21,8 +21,8 @@ import com.zzq.view.ViewApp.Companion.instance
  * 需要对坐标系有足够的了解，以及坐标系方向的转换等
  */
 class VerticalTextView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr) {
-    private val mWidth = dp2px(instance, 300f)
-    private val mHeight = dp2px(instance, 400f)
+    private val mWidth = dp2px(instance, 200f)
+    private val mHeight = dp2px(instance, 250f)
     private val imPaint = Paint()
     private val linePaint = Paint()
     private val mTextPaint = Paint()

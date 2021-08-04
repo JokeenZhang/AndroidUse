@@ -188,7 +188,7 @@ public class CircleProgressView extends View {
         int height = Math.max(getSuggestedMinimumHeight(),
                 resolveSize(size, heightMeasureSpec));
         Log.i(TAG_STATIC, "onMeasure width = " + width + " , height = " + height + " , size = " + size);
-        setMeasuredDimension(size, size);
+        setMeasuredDimension(size/2, size/2);
     }
 
     @Override
