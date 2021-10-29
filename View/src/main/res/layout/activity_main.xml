@@ -8,6 +8,10 @@
         <variable
             name="clickListener1"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="clickListener2"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <LinearLayout
@@ -24,5 +28,12 @@
             android:layout_height="wrap_content"
             android:onClick="@{clickListener1}"
             android:text="自定义View" />
+
+        <Button
+            android:id="@+id/btn_btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{clickListener2}"
+            android:text="View API" />
     </LinearLayout>
 </layout>

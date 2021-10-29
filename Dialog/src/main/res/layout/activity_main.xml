@@ -7,11 +7,11 @@
 
         <variable
             name="singleChoiceListener"
-            type="android.view.View.OnClickListener" />
+            type="android.com.zzq.view.View.OnClickListener" />
 
         <variable
             name="btn2ClickListener"
-            type="android.view.View.OnClickListener" />
+            type="android.com.zzq.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

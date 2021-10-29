@@ -36,5 +36,8 @@ class MainActivity : AppCompatActivity() {
         binding.clickListener1 = View.OnClickListener {
             startActivity(Intent(this, CustomViewActivity::class.java))
         }
+        binding.clickListener2 = View.OnClickListener {
+            startActivity(Intent(this, CustomViewActivity::class.java))
+        }
     }
 }

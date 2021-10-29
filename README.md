@@ -1,6 +1,6 @@
 ## 项目说明
 
-fork自[Multiple](https://github.com/OnLySe/Multiple)，主要用于处理Android本身相关的各种使用用例，如keyevent，view，动画等，其他的就留给Multiple自己解决。
+fork自[Multiple](https://github.com/OnLySe/Multiple)，主要用于处理Android本身相关的各种使用用例，如keyevent，com.zzq.view，动画等，其他的就留给Multiple自己解决。
 
 各Android知识点使用demo，通过该demo可总结其使用手册。由于有多个module，先在这里留下公用部分配置、代码、样式等。等这部分代码数量增长到一定程度，就建个专用的common module。
 

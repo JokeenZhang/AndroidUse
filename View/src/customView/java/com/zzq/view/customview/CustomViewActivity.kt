@@ -39,7 +39,7 @@ class CustomViewActivity : AppCompatActivity() {
     /**
      * View to bitmap.
      *
-     * @param view The view.
+     * @param view The com.zzq.view.
      * @return bitmap
      */
     fun view2Bitmap(view: View?): Bitmap? {
